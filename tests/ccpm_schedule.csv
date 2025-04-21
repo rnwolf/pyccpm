@@ -1,0 +1,5 @@
+ID,Name,Duration,Start Time,End Time,Start Date,End Date,Type,Predecessors,Resources,Progress
+1,Task A,5,0,5,2025-04-19,2025-04-25,Critical Chain,,,0%
+2,Task B,3,5,8,2025-04-25,2025-04-30,Critical Chain,1,,0%
+3,Task C,4,8,12,2025-04-30,2025-05-06,Critical Chain,2,,0%
+PB_3,Project Buffer,6.0,12,18.0,2025-05-06,2025-05-14,Project Buffer,3,,0%
