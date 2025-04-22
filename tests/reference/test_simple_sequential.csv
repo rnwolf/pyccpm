@@ -1,0 +1,5 @@
+id,name,start_time,end_time,type,chain
+1,Task A,0,5.0,Critical,critical
+2,Task B,5,8.0,Critical,critical
+3,Task C,8,12.0,Critical,critical
+PB_3,Project Buffer,12,18.0,Buffer,critical

@@ -1,0 +1,7 @@
+"id","name","start_time","end_time","type","chain"
+"1","T1.1",0,30,"Critical","critical"
+"PB_1","Project Buffer",30,45,"Buffer","critical"
+"4","T2.1",0,20,"Free","feeding 1"
+"2","T1.2",30,50,"Free","feeding 2"
+"5","T2.2",20,30,"Free","feeding 3"
+"3","T3",50,80,"Free","feeding 4"

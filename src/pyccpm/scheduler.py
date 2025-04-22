@@ -602,9 +602,9 @@ class CriticalChainScheduler:
         # Add grid
         ax.grid(True, linestyle="--", alpha=0.7)
 
-        # Show resource usage if requested
-        if show_resources and self.resources:
-            self.visualize_resource()
+        # # Show resource usage if requested
+        # if show_resources and self.resources:
+        #     self.visualize_resource()
 
         plt.tight_layout()
 

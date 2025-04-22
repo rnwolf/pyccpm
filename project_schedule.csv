@@ -1,0 +1,17 @@
+ID,Name,Duration,Start (Days),Finish (Days),Start Date,Finish Date,Predecessors,Resources,Chain Type,Progress (%)
+2,Requirements,5.0,0.0,5.0,2025-04-22,2025-04-29,,A,Critical Chain,100.0
+3,Design,7.0,5.0,12.0,2025-04-29,2025-05-08,2,B,Critical Chain,80.0
+5,Prototype B,6.0,12.0,18.0,2025-05-08,2025-05-16,3,B,Critical Chain,0.0
+7,Develop UI,8.0,18.0,26.0,2025-05-16,2025-05-28,5,B,Critical Chain,0.0
+8,Quality Assurance,6.0,26.0,32.0,2025-05-28,2025-06-05,"6,7",C,Critical Chain,0.0
+9,User Testing,5.0,32.0,37.0,2025-06-05,2025-06-12,8,"B,C",Critical Chain,0.0
+11,Deployment,3.0,37.0,40.0,2025-06-12,2025-06-17,"9,10","A,B",Critical Chain,0.0
+12,Project End,0.0,40.0,40.0,2025-06-17,2025-06-17,11,,Critical Chain,0.0
+13,Project Buffer,20.0,40.0,60.0,2025-06-17,2025-07-15,12,,Buffer,0.0
+4,Prototype A,4.0,-16.0,-12.0,2025-03-31,2025-04-04,3,A,Secondary Chain,20.0
+6,Develop Core,10.0,-12.0,-2.0,2025-04-04,2025-04-18,4,A,Secondary Chain,0.0
+14,Feeding Buffer 1,7.0,-2.0,5.0,2025-04-18,2025-04-29,6,,Buffer,2.857142857142857
+10,Documentation,4.0,20.0,24.0,2025-05-20,2025-05-26,8,A,Secondary Chain,0.0
+16,Feeding Buffer 2,2.0,24.0,26.0,2025-05-26,2025-05-28,10,,Buffer,0.0
+1,Project Start,0.0,0.0,0.0,2025-04-22,2025-04-22,,,Other,0.0
+19,Feeding Buffer 3,0.0,0.0,0.0,2025-04-22,2025-04-22,1,,Buffer,0.0

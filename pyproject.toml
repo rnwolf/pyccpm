@@ -21,6 +21,9 @@ build-backend = "hatchling.build"
 dev = [
     "pip>=25.0.1",
     "pytest>=8.3.5",
+    "pytest-cov",
+    "tdda[pytest]",
+    "pandas",
 ]
 
 [tool.setuptools.packages.find]
@@ -31,4 +34,18 @@ testpaths = ["tests"]
 python_files = "test_*.py"
 python_functions = "test_*"
 # Exclude manual tests from automated testing
-addopts = "--ignore=tests/manual_tests.py"
+# Set the working directory to the tests directory
+addopts = "--ignore=tests/manual_tests.py --rootdir=tests"
+
+[tool.coverage.run]
+include = [
+    "*/src/*",
+]
+omit = [
+    # omit anything in a .local directory anywhere
+    "*/.local/*",
+    # omit everything in /usr
+    "/usr/*",
+    # omit this single file
+    "utils/tirefire.py",
+    ]

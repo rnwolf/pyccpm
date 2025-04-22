@@ -1,7 +1,42 @@
 import matplotlib.pyplot as plt
 import networkx as nx
 from datetime import datetime, timedelta
+import pandas as pd
+import os
 
+def collect_task_data(task, chain_name):
+    """Helper function to collect task information."""
+    return {
+        "id": task.id,
+        "name": task.name,
+        "start": task.start,
+        "finish": task.finish,
+        "type": task.type,
+        "chain": chain_name,
+        "resources": ",".join(task.resources) if task.resources else "",
+        "predecessors": ",".join(task.predecessors) if task.predecessors else "",
+    }
+
+
+def prepare_result_dataframe(scheduler):
+    """Extract and format task data from scheduler into a DataFrame."""
+    tasks_data = []
+
+    # Collect critical chain data
+    for task in scheduler.critical_chain:
+        tasks_data.append(collect_task_data(task, "critical"))
+
+    # Collect secondary chains data
+    for i, chain in enumerate(scheduler.secondary_chains):
+        for task in chain:
+            tasks_data.append(collect_task_data(task, f"feeding {i+1}"))
+
+    # Create and prepare DataFrame
+    df = pd.DataFrame(tasks_data).sort_values(by=["chain", "start"])
+    df["start"] = df["start"].astype(int)
+    df['finish'] = df['finish'].astype(int)
+
+    return df
 
 class Task:
     def __init__(
@@ -458,7 +493,8 @@ class CriticalChainScheduler:
 
         plt.tight_layout()
         plt.grid(axis="x", linestyle="--", alpha=0.7)
-        plt.show()
+        plt.savefig(fname='test_image.svg',format='svg')
+        #plt.show()
 
     def visualize_resource(self):
         """
@@ -921,7 +957,17 @@ def test_larry_simple():
 
     # Schedule
     scheduler.schedule()
-    scheduler.visualize_resource()
+    #scheduler.visualize_resource()
+
+    # Collect and prepare results data
+    df = prepare_result_dataframe(scheduler)
+
+    # Save the DataFrame to a CSV file to create a reference file for building tests
+    csv_file = "tests/test_df_task_data.csv"
+    # Create the directory if it doesn't exist
+    os.makedirs(os.path.dirname(csv_file), exist_ok=True)
+    df.to_csv(csv_file, index=False)
+    print(f"\nSaved DataFrame to {csv_file}")
 
     # Print results
     print("\nCritical Chain:")
@@ -941,7 +987,7 @@ def test_larry_simple():
     # Visualize
     scheduler.visualize()
     # visualize resource load
-    scheduler.visualize_resource()
+    #scheduler.visualize_resource()
 
     return scheduler
 
